@@ -15,11 +15,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 export default function FullScreenDialog(props) {
+  const { lm } = props
   const [numPages, setNumPages] = useState(null)
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages)
   }
-
+  console.log(props)
   const handleClose = () => {
     props.onClose(null)
   }
@@ -33,7 +34,7 @@ export default function FullScreenDialog(props) {
         TransitionComponent={Transition}
       >
         <AppBar sx={{ position: "relative" }}>
-          <Toolbar>
+          <Toolbar variant="dense">
             <IconButton
               edge="start"
               color="inherit"
@@ -43,7 +44,7 @@ export default function FullScreenDialog(props) {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Learning Module
+              {lm.title} - Learning Module
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               Close
@@ -51,7 +52,7 @@ export default function FullScreenDialog(props) {
           </Toolbar>
         </AppBar>
         <Document
-          file={"./LM/" + props.file}
+          file={"./LM/" + lm.id}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={console.error}
         >

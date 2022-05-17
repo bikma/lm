@@ -10,7 +10,8 @@ import timeGridPlugin from "@fullcalendar/timegrid"
 function App() {
   const [LM, setLM] = useState()
   const handleEventClick = (info) => {
-    setLM(info.event.id)
+    console.log(info.event.title)
+    setLM(info.event)
   }
   return (
     <div style={{ margin: 20 }}>
@@ -29,7 +30,7 @@ function App() {
         events={events}
         eventClick={handleEventClick}
         slotMinTime="08:00"
-        slotMaxTime="11:30"
+        slotMaxTime="13:00"
         navLinks={true}
         nowIndicator={true}
         slotDuration={"00:30:00"}
@@ -39,7 +40,7 @@ function App() {
       {LM && (
         <div>
           <OpenLM
-            file={LM}
+            lm={LM}
             onClose={() => {
               setLM(null)
             }}
