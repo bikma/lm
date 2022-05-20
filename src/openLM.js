@@ -20,7 +20,6 @@ export default function FullScreenDialog(props) {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages)
   }
-  console.log(props)
   const handleClose = () => {
     props.onClose(null)
   }

@@ -96,7 +96,11 @@ fs.readdir(dir, (err, files) => {
     let date = fields[2].split("-")
     let startDate = `20${date[2]}-${date[1]}-${date[0]}`
     date = fields[3].split("-")
-    let endDate = `20${date[2]}-${date[1]}-${date[0]}` //${parseInt(date[0]) + 1}
+    const endDay =
+      parseInt(date[0]) + 1 < 10
+        ? `0${parseInt(date[0]) + 1}`
+        : parseInt(date[0]) + 1
+    let endDate = `20${date[2]}-${date[1]}-${endDay}` //${parseInt(date[0]) + 1}
     events.push({
       id: file,
       title: fields[4].toLocaleUpperCase(),
